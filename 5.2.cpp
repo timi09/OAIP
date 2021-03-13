@@ -1,3 +1,4 @@
+#include "pch.h"
 #include <iostream>
 #include <string> 
 #include <vector> 
@@ -16,8 +17,8 @@ struct Worker
 
 vector<Worker> WorkersInput(int count);
 void WorkersOutput(vector<Worker> workers);
-vector<Worker> Control(vector<Worker>& workers);
-Worker Check(Worker& worker);
+void Control(vector<Worker>& workers);
+void Check(Worker& worker);
 
 int main()
 {
@@ -69,16 +70,15 @@ vector<Worker> WorkersInput(int count)
 	return Workers;
 }
 
-vector<Worker> Control(vector<Worker>& workers)
+void Control(vector<Worker>& workers)
 {
 	for (vector<Worker>::iterator i = workers.begin(); i != workers.end(); ++i)
 	{
 		Check(*i);
 	}
-	return workers;
 }
 
-Worker Check(Worker& worker) 
+void Check(Worker& worker) 
 {
 	if ((double)worker.CountOfLate / worker.DaysWorked < 0.05)
 	{
@@ -92,8 +92,6 @@ Worker Check(Worker& worker)
 	{
 		worker.SalaryChange = "без изменений";
 	}
-
-	return worker;
 }
 
 void WorkersOutput(vector<Worker> workers)
